@@ -8,4 +8,6 @@ To send Sony12, device = 1, obc = 47, send the following command over the serial
 SEND 0000 0067 0000 000d 0060 0018 0030 0018 0030 0018 0030 0018 0030 0018 0018 0018 0030 0018 0018 0018 0030 0018 0018 0018 0018 0018 0018 0018 0018 03de
 </pre>
 
+You can find out these commands from community maintained databases such as http://irdb.tk
+
 Make sure you send a newline character at the end of the line.
