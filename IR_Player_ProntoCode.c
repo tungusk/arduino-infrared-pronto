@@ -1,59 +1,26 @@
-/**
-  ******************************************************************************
-  * @file     IR_Player_ProntoCode.c 
-  * @author   Stephen Ong
-  * @version  V1.0.0
-  * @date     08/01/2011
-  * @brief    Infrared Remote Control Player. 
-  *         
-  ******************************************************************************
-  * 
-  * Infrared Remote Control Player by Stephen Ong (http://robotics.ong.id.au).
-  * 
-  * This infrared remote control player runs on the Arduino hardware platform.
-  * It plays back IR code stored in Pronto Hex format. Useful for programming
-  * learning universal remote control.
-  *
-  * @copy
-  *
-  * This work is licenced under the Creative Commons Attribution-NonCommercial 
-  * 3.0 Unported License. To view a copy of this licence, visit 
-  * http://creativecommons.org/licenses/by-nc/3.0/ or send a letter to Creative 
-  * Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.
-  *
-  * <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Infrared Remote Control Player</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://robotics.ong.id.au" property="cc:attributionName" rel="cc:attributionURL">Stephen Ong</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
-  */ 
-
-
-/* 
- * Changelog:
- * v1.0 - 2011/01/08 - First Release
- */
-
-
 /*
 Send Pronto Hex via an IR LED connected to Arduino Pin D9.
- Make sure you do not send a blank (" ") as the last character.
- Send the following command over the serial line:
+Make sure you do not send a blank (" ") as the last character.
+Send the following command over the serial line:
  
- # Sony12, device = 1, obc = 47
- SEND 0000 0067 0000 000d 0060 0018 0030 0018 0030 0018 0030 0018 0030 0018 0018 0018 0030 0018 0018 0018 0030 0018 0018 0018 0018 0018 0018 0018 0018 03de
+Sony12, device = 1, obc = 47
+SEND 0000 0067 0000 000d 0060 0018 0030 0018 0030 0018 0030 0018 0030 0018 0018 0018 0030 0018 0018 0018 0030 0018 0018 0018 0018 0018 0018 0018 0018 03de
  
- or
+or
  
- # RC5, device = 11, obc = 64
- SEND 0000 0073 0000 000B 0040 0020 0020 0020 0020 0040 0040 0040 0020 0020 0040 0020 0020 0020 0020 0020 0020 0020 0020 0020 0020 0CC8
+# RC5, device = 11, obc = 64
+SEND 0000 0073 0000 000B 0040 0020 0020 0020 0020 0040 0040 0040 0020 0020 0040 0020 0020 0020 0020 0020 0020 0020 0020 0020 0020 0CC8
  
- Based on https://github.com/stephenong/Arduino-IR-Remote-Control-Player
+Based on IR_Player_ProntoCode.c by Stephen Ong
+https://github.com/stephenong/Arduino-IR-Remote-Control-Player
 
-  * This work is licenced under the Creative Commons Attribution-NonCommercial 
-  * 3.0 Unported License. To view a copy of this licence, visit 
-  * http://creativecommons.org/licenses/by-nc/3.0/ or send a letter to Creative 
-  * Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.
-  *
-  * <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Infrared Remote Control Player</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://robotics.ong.id.au" property="cc:attributionName" rel="cc:attributionURL">Stephen Ong</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+This work is licenced under the Creative Commons Attribution-NonCommercial 
+3.0 Unported License. To view a copy of this licence, visit 
+http://creativecommons.org/licenses/by-nc/3.0/ or send a letter to Creative 
+Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.
+
+http://creativecommons.org/licenses/by-nc/3.0/
 */
-
 
 #include <avr/interrupt.h>
 #include <stdio.h>
