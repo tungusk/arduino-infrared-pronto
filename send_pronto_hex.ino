@@ -28,9 +28,9 @@ http://creativecommons.org/licenses/by-nc/3.0/
 #include <stdint.h>
 #include <avr/io.h>
 #define IR_PORT PORTB
-#define IR_PIN PINB
-#define IR_DDR DDRB
-#define IR_BV _BV(1)
+// #define IR_PIN PINB
+// #define IR_DDR DDRB
+// #define IR_BV _BV(1)
 #define IR_OCR OCR1A
 #define IR_TCCRnA TCCR1A
 #define IR_TCCRnB TCCR1B
@@ -77,8 +77,10 @@ void ir_toggle()
 void ir_start(uint16_t *code)
 {
   ir_code = code;
-  IR_PORT &= ~IR_BV; // Turn output off
-  IR_DDR |= IR_BV; // Set it as output
+//  IR_PORT &= ~IR_BV; // Turn output off (atmega328 only)
+  digitalWrite(9,LOW); // Turn output off
+//  IR_DDR |= IR_BV; // Set it as output (atmega328 only)
+  pinMode(9,OUTPUT); // Set it as output
   IR_TCCRnA = 0x00; // Reset the pwm
   IR_TCCRnB = 0x00;
   //printf_P(PSTR("FREQ CODE: %hd\r\n"), code[PRONTO_FREQ_CODE]);
